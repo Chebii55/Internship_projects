@@ -23,7 +23,17 @@ const SignUp = () => {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const roles = ["Admin", "Manager", "Staff"];
+  const employmentStatuses = ["Full-time", "Part-time", "Contract"];
+  const departments = ["Human Resources", "Engineering", "Marketing", "Sales", "Finance", "Customer Support"];
+  const jobTitles = [
+    "Software Engineer",
+    "Data Analyst",
+    "Project Manager",
+    "HR Specialist",
+    "Sales Executive",
+    "Marketing Manager",
+  ];
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -118,7 +128,7 @@ const SignUp = () => {
 
           {/* Email, ID Number, Role */}
           <div className="mb-4 flex gap-4">
-            <div className="w-1/3">
+            <div className="w-1/2">
               <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
                 Email
               </label>
@@ -132,52 +142,7 @@ const SignUp = () => {
                 required
               />
             </div>
-            <div className="w-1/3">
-              <label htmlFor="id_number" className="block text-gray-700 font-medium mb-2">
-                ID Number
-              </label>
-              <input
-                type="text"
-                id="id_number"
-                name="id_number"
-                value={formData.id_number}
-                onChange={handleChange}
-                className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
-                required
-              />
-            </div>
-            <div className="w-1/3">
-              <label htmlFor="role" className="block text-gray-700 font-medium mb-2">
-                Role
-              </label>
-              <input
-                type="text"
-                id="role"
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
-                required
-              />
-            </div>
-          </div>
-
-          {/* Address and Phone Number */}
-          <div className="mb-4 flex gap-4">
-            <div className="w-1/2">
-              <label htmlFor="address" className="block text-gray-700 font-medium mb-2">
-                Address
-              </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
-                required
-              />
-            </div>
+            
             <div className="w-1/2">
               <label htmlFor="phone_number" className="block text-gray-700 font-medium mb-2">
                 Phone Number
@@ -192,30 +157,136 @@ const SignUp = () => {
                 required
               />
             </div>
+            
           </div>
 
+          {/* Address and Phone Number */}
+          <div className="mb-4 flex gap-4">
+          <div className="w-1/2">
+              <label htmlFor="id_number" className="block text-gray-700 font-medium mb-2">
+                ID Number
+              </label>
+              <input
+                type="text"
+                id="id_number"
+                name="id_number"
+                value={formData.id_number}
+                onChange={handleChange}
+                className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+                required
+              />
+            </div>
+            <div className="w-1/2">
+              <label htmlFor="address" className="block text-gray-700 font-medium mb-2">
+                Address
+              </label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+                required
+              />
+            </div>
+            
+            
+          </div>
+          <div className="mb-4 flex gap-2">
+          <div className="w-1/2">
+              <label htmlFor="role" className="block text-gray-700 font-medium mb-2">
+                Role
+              </label>
+              <select
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+                required
+              >
+                <option value="" disabled>
+                  Select Role
+                </option>
+                {roles.map((role) => (
+                  <option key={role} value={role}>
+                    {role}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="w-1/2">
+              <label htmlFor="department" className="block text-gray-700 font-medium mb-2">
+                Department
+              </label>
+              <select
+                id="department"
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+                required
+              >
+                <option value="" disabled>
+                  Select Department
+                </option>
+                {departments.map((dept) => (
+                  <option key={dept} value={dept}>
+                    {dept}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
           {/* Department, Job Title, Employment Status */}
           <div className="mb-4 flex gap-4">
-            {[
-              { id: "department", label: "Department" },
-              { id: "job_title", label: "Job Title" },
-              { id: "employment_status", label: "Employment Status" },
-            ].map((field) => (
-              <div className="w-1/3" key={field.id}>
-                <label htmlFor={field.id} className="block text-gray-700 font-medium mb-2">
-                  {field.label}
-                </label>
-                <input
-                  type="text"
-                  id={field.id}
-                  name={field.id}
-                  value={formData[field.id]}
-                  onChange={handleChange}
-                  className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
-                  required
-                />
-              </div>
-            ))}
+          
+            <div className="mb-4 w-1/2">
+            <label htmlFor="job_title" className="block text-gray-700 font-medium mb-2">
+              Job Title
+            </label>
+            <select
+              id="job_title"
+              name="job_title"
+              value={formData.job_title}
+              onChange={handleChange}
+              className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+              required
+            >
+              <option value="" disabled>
+                Select Job Title
+              </option>
+              {jobTitles.map((title) => (
+                <option key={title} value={title}>
+                  {title}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="w-1/2">
+              <label htmlFor="employment_status" className="block text-gray-700 font-medium mb-2">
+                Employment Status
+              </label>
+              <select
+                id="employment_status"
+                name="employment_status"
+                value={formData.employment_status}
+                onChange={handleChange}
+                className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+                required
+              >
+                <option value="" disabled>
+                  Select Status
+                </option>
+                {employmentStatuses.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            </div>
+
           </div>
 
           {/* Date Fields */}
@@ -251,8 +322,8 @@ const SignUp = () => {
           </div>
 
           {/* Password and Confirm Password */}
-          <div className="mb-4 flex gap-4">
-            <div className="w-1/2">
+          <div>
+            <div>
               <label htmlFor="password" className="block text-gray-700 font-medium mb-2">
                 Password
               </label>
@@ -265,8 +336,11 @@ const SignUp = () => {
                 className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
                 required
               />
+              {formData.password && formData.password.length < 8 && (
+                <p className="text-red-500 mt-1 text-sm">Password must be at least 8 characters long.</p>
+              )}
             </div>
-            <div className="w-1/2">
+            <div>
               <label htmlFor="confirm_password" className="block text-gray-700 font-medium mb-2">
                 Confirm Password
               </label>
@@ -279,8 +353,18 @@ const SignUp = () => {
                 className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
                 required
               />
+              {formData.confirm_password && formData.confirm_password.length < 8 && (
+                <p className="text-red-500 mt-1 text-sm">Confirm Password must be at least 8 characters long.</p>
+              )}
+              {formData.password &&
+                formData.confirm_password &&
+                formData.password !== formData.confirm_password &&
+                formData.confirm_password.length >= 8 && (
+                  <p className="text-red-500 mt-1 text-sm">Passwords do not match.</p>
+                )}
             </div>
           </div>
+
 
           {/* Submit Button */}
           <div className="mt-4">

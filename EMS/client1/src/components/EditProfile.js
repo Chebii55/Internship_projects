@@ -78,7 +78,7 @@ const EditProfile = () => {
 
     return (
         <div className="bg-gradient-to-r from-indigo-800 to-blue-900 min-h-screen flex items-center justify-center p-4">
-            <div className="font-std mb-10 w-full rounded-2xl bg-white p-10 font-normal leading-relaxed text-gray-900 shadow-xl">
+            <div className="font-std mb-10 w-full bg-blue-100 rounded-2xl bg-white p-10 font-normal leading-relaxed text-gray-900 shadow-xl">
                 <h1 className="text-2xl font-bold text-indigo-800 mb-6">Edit Profile</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">

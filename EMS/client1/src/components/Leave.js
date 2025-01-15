@@ -76,7 +76,7 @@ const Leave = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container my-4 rounded-lg mx-auto bg-blue-100 p-4">
       {isAuthenticated ? (
         <>
           <h2 className="text-2xl  font-semibold mb-4">Your Leave Information</h2>

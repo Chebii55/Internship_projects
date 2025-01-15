@@ -11,7 +11,7 @@ import Leave from "./Leave";
 import PerformanceStatement from "./PerformanceStatement";
 import Navbar from "./Navbar";
 import ManageEmployees from "./ManageEmployees";
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import Sidebar from "./Sidebar";
 import ViewEmployee from "./ViewEmployee";
 import ManagePayrolls from "./ManagePayrolls";
@@ -20,10 +20,32 @@ import ManageLeave from "./ManageLeave";
 import AddPerformanceStatement from "./AddPerformanceStatement";
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // to manage authentication state
+
 
   const toggleSidebar = () => {
-    setSidebarOpen(!isSidebarOpen);
+    if (isAuthenticated) {
+      setSidebarOpen(!isSidebarOpen);
+    }
   };
+
+  useEffect(() => {
+    // Assuming check_session endpoint returns user session info or status
+    fetch("/check_session")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.isAuthenticated) {
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking session:", error);
+        setIsAuthenticated(false);
+      });
+  }, []);
+
 
   return (
     <div className="App"> 

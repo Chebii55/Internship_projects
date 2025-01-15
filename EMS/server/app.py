@@ -404,4 +404,4 @@ api.add_resource(Performances, '/performances')
 api.add_resource(PerformanceByID, '/performances/<int:performance_id>')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5555)
