@@ -24,9 +24,7 @@ function App() {
 
 
   const toggleSidebar = () => {
-    if (isAuthenticated) {
-      setSidebarOpen(!isSidebarOpen);
-    }
+    setSidebarOpen(!isSidebarOpen);
   };
 
   useEffect(() => {
